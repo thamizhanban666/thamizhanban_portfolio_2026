@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useContext, useEffect, useRef, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, useRef, type ReactNode } from "react";
 import Lenis from "lenis";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
@@ -10,13 +10,14 @@ export function useLenis() {
 }
 
 export default function SmoothScroll({ children }: { children: ReactNode }) {
-  const lenisRef = useRef<Lenis | null>(null);
+  const [lenis, setLenis] = useState<Lenis | null>(null);
+  const rafId = useRef<number>(0);
   const reduced = useReducedMotion();
 
   useEffect(() => {
     if (reduced) return;
 
-    const lenis = new Lenis({
+    const instance = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
@@ -25,22 +26,23 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
       touchMultiplier: 2,
     });
 
-    lenisRef.current = lenis;
+    setLenis(instance);
 
     function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
+      instance.raf(time);
+      rafId.current = requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
+    rafId.current = requestAnimationFrame(raf);
 
     return () => {
-      lenis.destroy();
-      lenisRef.current = null;
+      cancelAnimationFrame(rafId.current);
+      instance.destroy();
+      setLenis(null);
     };
   }, [reduced]);
 
   return (
-    <LenisContext.Provider value={lenisRef.current}>
+    <LenisContext.Provider value={lenis}>
       {children}
     </LenisContext.Provider>
   );

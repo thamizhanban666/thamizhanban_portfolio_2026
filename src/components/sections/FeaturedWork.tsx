@@ -86,7 +86,7 @@ export default function FeaturedWork() {
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2, ease: appleEase as unknown as number[] }}
+            transition={{ duration: 0.6, delay: 0.2, ease: appleEase }}
             className="w-12 h-1 bg-primary rounded-full origin-left"
           />
         </div>
@@ -101,7 +101,7 @@ export default function FeaturedWork() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{
                 duration: 0.7,
-                ease: appleEase as unknown as number[],
+                ease: appleEase,
               }}
               className="space-y-8"
             >

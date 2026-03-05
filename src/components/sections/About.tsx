@@ -28,7 +28,7 @@ export default function About() {
             transition={{
               duration: 0.6,
               delay: 0.2,
-              ease: appleEase as unknown as number[],
+              ease: appleEase,
             }}
             className="w-12 h-1 bg-primary rounded-full origin-left"
           />
@@ -42,7 +42,7 @@ export default function About() {
           viewport={{ once: true }}
           transition={{
             duration: 0.6,
-            ease: appleEase as unknown as number[],
+            ease: appleEase,
           }}
         >
           {/* Profile image placeholder */}
@@ -94,7 +94,7 @@ export default function About() {
           transition={{
             duration: 0.6,
             delay: 0.2,
-            ease: appleEase as unknown as number[],
+            ease: appleEase,
           }}
         >
           {aboutData.stats.map((stat, index) => {
@@ -111,24 +111,20 @@ export default function About() {
                 transition={{
                   duration: 0.5,
                   delay: 0.1 + index * 0.1,
-                  ease: appleEase as unknown as number[],
+                  ease: appleEase,
                 }}
               >
-                <motion.div
-                  className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-primary/10 mb-3"
-                  whileHover={{ scale: 1.15, rotate: 8 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                >
-                  <Icon size={18} className="text-primary" />
-                </motion.div>
                 <AnimatedCounter
                   value={stat.value}
                   className="text-4xl sm:text-5xl font-bold text-primary"
                   duration={2000}
                 />
-                <p className="text-sm text-muted-foreground mt-2 tracking-wide">
-                  {stat.label}
-                </p>
+                <div className="flex items-center gap-1.5 mt-2">
+                  <Icon size={14} className="text-muted-foreground/70" />
+                  <p className="text-sm text-muted-foreground tracking-wide">
+                    {stat.label}
+                  </p>
+                </div>
               </motion.div>
             );
           })}

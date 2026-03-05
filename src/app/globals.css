@@ -154,10 +154,7 @@
   body {
     @apply bg-background text-foreground;
   }
-  /* Offset anchor scroll for fixed navbar (h-16 = 4rem + 1rem breathing room) */
-  section[id] {
-    scroll-margin-top: 5rem;
-  }
+  /* Lenis handles scroll offset via JS; native fallback uses section padding */
 }
 
 /* ─── Custom Utilities ─── */

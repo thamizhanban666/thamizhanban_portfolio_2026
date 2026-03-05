@@ -47,7 +47,7 @@ export default function Testimonials() {
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2, ease: appleEase as unknown as number[] }}
+            transition={{ duration: 0.6, delay: 0.2, ease: appleEase }}
             className="w-12 h-1 bg-primary rounded-full origin-left"
           />
         </div>
@@ -59,7 +59,7 @@ export default function Testimonials() {
           whileInView={{ opacity: 1, y: 0 }}
           whileHover={{ y: -4 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: appleEase as unknown as number[] }}
+          transition={{ duration: 0.6, ease: appleEase }}
         >
           <AnimatePresence mode="wait">
             <motion.div
@@ -69,7 +69,7 @@ export default function Testimonials() {
               exit={{ opacity: 0, y: -20 }}
               transition={{
                 duration: 0.5,
-                ease: appleEase as unknown as number[],
+                ease: appleEase,
               }}
               className="space-y-8"
             >

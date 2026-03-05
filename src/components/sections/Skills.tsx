@@ -25,7 +25,7 @@ export default function Skills() {
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2, ease: appleEase as unknown as number[] }}
+            transition={{ duration: 0.6, delay: 0.2, ease: appleEase }}
             className="w-12 h-1 bg-primary rounded-full origin-left"
           />
         </div>

@@ -41,7 +41,8 @@ export default function Navbar() {
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
     if (lenis) {
-      lenis.scrollTo(href, { offset: -80 });
+      const isMd = window.matchMedia("(min-width: 768px)").matches;
+      lenis.scrollTo(href, { offset: isMd ? 48 : 8 });
     } else {
       const element = document.querySelector(href);
       if (element) {
@@ -69,7 +70,7 @@ export default function Navbar() {
       <motion.nav
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: appleEase as unknown as number[] }}
+        transition={{ duration: 0.6, ease: appleEase }}
         className={cn(
           "fixed top-0 left-0 right-0 z-50 h-16 flex items-center transition-all duration-300 border-b",
           scrolled
@@ -106,7 +107,7 @@ export default function Navbar() {
                   whileHover={{ scaleX: 1 }}
                   transition={{
                     duration: 0.3,
-                    ease: appleEase as unknown as number[],
+                    ease: appleEase,
                   }}
                 />
               </a>
@@ -207,7 +208,7 @@ export default function Navbar() {
                           transition={{
                             duration: 0.3,
                             delay: 0.05 + index * 0.06,
-                            ease: appleEase as unknown as number[],
+                            ease: appleEase,
                           }}
                           onClick={(e) => {
                             e.preventDefault();
@@ -241,7 +242,7 @@ export default function Navbar() {
                         transition={{
                           duration: 0.4,
                           delay: 0.4,
-                          ease: appleEase as unknown as number[],
+                          ease: appleEase,
                         }}
                         className="flex items-center gap-3"
                       >

@@ -25,6 +25,7 @@ export default function AnimatedCounter({
     <AnimatedCounterInner
       end={numericEnd}
       suffix={suffix}
+      finalValue={value}
       className={className}
       duration={duration}
     />
@@ -34,20 +35,32 @@ export default function AnimatedCounter({
 function AnimatedCounterInner({
   end,
   suffix,
+  finalValue,
   className,
   duration,
 }: {
   end: number;
   suffix: string;
+  finalValue: string;
   className?: string;
   duration: number;
 }) {
   const { count, ref } = useCountUp(end, duration);
 
   return (
-    <span ref={ref} className={className}>
-      {count}
-      {suffix}
+    <span
+      ref={ref}
+      className={`${className ?? ""} tabular-nums inline-grid`}
+    >
+      {/* Invisible placeholder reserves final width — prevents layout shift */}
+      <span className="invisible col-start-1 row-start-1" aria-hidden="true">
+        {finalValue}
+      </span>
+      {/* Visible animated value overlaid on same grid cell */}
+      <span className="col-start-1 row-start-1">
+        {count}
+        {suffix}
+      </span>
     </span>
   );
 }

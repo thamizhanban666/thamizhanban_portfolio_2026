@@ -5,7 +5,7 @@ import { useIsTouchDevice } from "./useIsTouchDevice";
 import { useReducedMotion } from "./useReducedMotion";
 
 interface MagneticReturn {
-  ref: React.RefObject<HTMLElement | null>;
+  ref: React.RefObject<HTMLDivElement | null>;
   x: MotionValue<number>;
   y: MotionValue<number>;
   handleMouseMove: (e: React.MouseEvent) => void;
@@ -13,7 +13,7 @@ interface MagneticReturn {
 }
 
 export function useMagneticEffect(strength = 0.35): MagneticReturn {
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const isTouch = useIsTouchDevice();
   const reduced = useReducedMotion();
 

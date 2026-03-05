@@ -1,7 +1,7 @@
 import type { Variants } from "framer-motion";
 
 // Apple's standard ease-out curve (used across macOS/iOS animations)
-export const appleEase = [0.25, 0.46, 0.45, 0.94] as const;
+export const appleEase: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94];
 
 export const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 20 },

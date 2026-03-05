@@ -66,14 +66,15 @@ export default function Hero() {
       opacity: 1,
       y: 0,
       filter: "blur(0px)",
-      transition: { duration: 0.6, ease: appleEase as unknown as number[] },
+      transition: { duration: 0.6, ease: appleEase },
     },
   };
 
   const handleScrollTo = (href: string) => (e: React.MouseEvent) => {
     e.preventDefault();
     if (lenis) {
-      lenis.scrollTo(href, { offset: -80 });
+      const isMd = window.matchMedia("(min-width: 768px)").matches;
+      lenis.scrollTo(href, { offset: isMd ? 48 : 8 });
     } else {
       document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
     }
@@ -120,7 +121,7 @@ export default developer;`}
         <motion.div
           initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ duration: 0.6, delay: 0.3, ease: appleEase as unknown as number[] }}
+          transition={{ duration: 0.6, delay: 0.3, ease: appleEase }}
         >
           <Badge
             variant="outline"
@@ -153,7 +154,7 @@ export default developer;`}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8, ease: appleEase as unknown as number[] }}
+          transition={{ duration: 0.6, delay: 0.8, ease: appleEase }}
           className="text-xl sm:text-2xl md:text-3xl font-medium mb-6"
         >
           <span className="text-primary">
@@ -166,7 +167,7 @@ export default developer;`}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.0, ease: appleEase as unknown as number[] }}
+          transition={{ duration: 0.6, delay: 1.0, ease: appleEase }}
           className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto mb-10 leading-relaxed"
         >
           {heroData.subtext}
@@ -176,7 +177,7 @@ export default developer;`}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.2, ease: appleEase as unknown as number[] }}
+          transition={{ duration: 0.6, delay: 1.2, ease: appleEase }}
           className="flex flex-row items-center justify-center gap-4"
         >
           <MagneticButton strength={0.3}>

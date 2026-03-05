@@ -9,7 +9,7 @@ import { appleEase } from "@/lib/animation-variants";
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 md:py-40">
+    <section id="contact" className="py-20 md:py-32">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
         <motion.div
           className="glass p-10 sm:p-14 md:p-16"
@@ -17,7 +17,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           whileHover={{ y: -4 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: appleEase as unknown as number[] }}
+          transition={{ duration: 0.6, ease: appleEase }}
         >
           {/* Big heading */}
           <motion.h2
@@ -26,7 +26,7 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{
               duration: 0.6,
-              ease: appleEase as unknown as number[],
+              ease: appleEase,
             }}
             className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight"
           >
@@ -42,7 +42,7 @@ export default function Contact() {
             transition={{
               duration: 0.6,
               delay: 0.1,
-              ease: appleEase as unknown as number[],
+              ease: appleEase,
             }}
             className="text-muted-foreground mt-6 text-lg max-w-xl mx-auto"
           >
@@ -57,7 +57,7 @@ export default function Contact() {
             transition={{
               duration: 0.6,
               delay: 0.2,
-              ease: appleEase as unknown as number[],
+              ease: appleEase,
             }}
             className="mt-10"
           >
@@ -84,7 +84,7 @@ export default function Contact() {
             transition={{
               duration: 0.6,
               delay: 0.35,
-              ease: appleEase as unknown as number[],
+              ease: appleEase,
             }}
             className="mt-10 flex items-center justify-center gap-3"
           >

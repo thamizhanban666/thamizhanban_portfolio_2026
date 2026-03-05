@@ -62,7 +62,7 @@ export default function Experience() {
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2, ease: appleEase as unknown as number[] }}
+            transition={{ duration: 0.6, delay: 0.2, ease: appleEase }}
             className="w-12 h-1 bg-primary rounded-full origin-left"
           />
         </div>
@@ -158,7 +158,7 @@ export default function Experience() {
                         transition={{
                           duration: 0.4,
                           delay: hIndex * 0.08,
-                          ease: appleEase as unknown as number[],
+                          ease: appleEase,
                         }}
                         className="text-foreground/80 text-sm leading-relaxed flex gap-2"
                       >
