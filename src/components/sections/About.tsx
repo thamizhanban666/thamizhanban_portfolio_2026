@@ -45,18 +45,18 @@ export default function About() {
             ease: appleEase,
           }}
         >
-          {/* Profile image placeholder */}
+          {/* Profile image */}
           <motion.div
             className="shrink-0 mx-auto sm:mx-0"
             whileHover={{ scale: 1.05, rotate: 3 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
             <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full border-2 border-primary/40 p-1 hover:border-primary/70 transition-colors">
-              <div className="w-full h-full rounded-full bg-gradient-to-br from-primary/20 via-primary/10 to-transparent flex items-center justify-center">
-                <span className="text-4xl sm:text-5xl font-bold text-primary/60">
-                  T
-                </span>
-              </div>
+              <img
+                src="/images/profilePicture1.png"
+                alt="Thamizhanban"
+                className="w-full h-full rounded-full object-cover"
+              />
             </div>
           </motion.div>
           {/* First paragraph */}

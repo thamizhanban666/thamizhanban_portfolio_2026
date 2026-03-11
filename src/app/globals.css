@@ -4,6 +4,19 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Restore pointer cursor for interactive elements (override Tailwind v4 preflight) */
+button,
+[role="tab"],
+[role="button"],
+a,
+select,
+summary,
+[type="button"],
+[type="submit"],
+[type="reset"] {
+  cursor: pointer !important;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -208,10 +221,10 @@ html:not(.dark) .grid-bg {
 
 /* Glassmorphism card */
 .glass {
-  background: rgba(20, 22, 35, 0.55);
+  background: rgba(30, 33, 48, 0.7);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 1.5rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
@@ -234,6 +247,15 @@ html:not(.dark) .glass {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: oklch(0.75 0.18 55 / 60%);
+}
+
+/* Hide scrollbar utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
 /* Lenis smooth scroll */

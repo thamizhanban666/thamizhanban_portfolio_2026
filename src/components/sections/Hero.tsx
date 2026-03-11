@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { heroData, personalInfo } from "@/lib/data";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import MagneticButton from "@/components/animations/MagneticButton";
 import ParallaxLayer from "@/components/animations/ParallaxLayer";
@@ -90,11 +89,11 @@ export default function Hero() {
         <pre className="text-primary/[0.04] dark:text-primary/[0.06] text-[10px] sm:text-xs leading-relaxed font-mono whitespace-pre rotate-[-4deg] scale-110">
 {`const developer = {
   name: "Thamizhanban",
-  role: "Full Stack Developer",
+  role: "Frontend Architect",
   stack: ["React", "Next.js", "TypeScript"],
-  passion: "Building products from scratch",
-  experience: "3+ years",
-  focus: "Frontend Architecture",
+  passion: "Building entire products",
+  approach: "Design in code",
+  focus: "Clean architecture, pixel-perfect UI",
 };
 
 export default developer;`}
@@ -117,21 +116,6 @@ export default developer;`}
         className="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto"
         style={{ y: headingY, opacity: headingOpacity }}
       >
-        {/* Status Badge — light glass, no heavy backdrop */}
-        <motion.div
-          initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ duration: 0.6, delay: 0.3, ease: appleEase }}
-        >
-          <Badge
-            variant="outline"
-            className="mb-6 px-4 py-2 text-sm gap-2 bg-background/60 backdrop-blur-sm border-border"
-          >
-            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-            {heroData.statusBadge}
-          </Badge>
-        </motion.div>
-
         {/* Heading with word-by-word reveal + blur */}
         <motion.h1
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6"

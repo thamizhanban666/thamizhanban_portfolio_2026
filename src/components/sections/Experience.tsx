@@ -26,18 +26,28 @@ function calcDuration(startDate: string): string {
   return `${years} yr${years !== 1 ? "s" : ""} ${months} mo`;
 }
 
-/** Wraps leading numbers like "90+" or "140+" in strong tags for emphasis */
-function highlightMetrics(text: string): React.ReactNode {
-  const parts = text.split(/(\b\d[\d,]*\+?\b)/g);
-  return parts.map((part, i) =>
-    /^\d[\d,]*\+?$/.test(part) ? (
-      <strong key={i} className="text-primary font-semibold">
-        {part}
-      </strong>
-    ) : (
-      part
-    )
-  );
+/** Parses <hl> (primary color) and <b> (bold only) tags in highlight text */
+function parseHighlights(text: string): React.ReactNode {
+  const parts = text.split(/(<hl>.*?<\/hl>|<b>.*?<\/b>)/g);
+  return parts.map((part, i) => {
+    const hlMatch = part.match(/^<hl>(.*?)<\/hl>$/);
+    if (hlMatch) {
+      return (
+        <span key={i} className="text-primary">
+          {hlMatch[1]}
+        </span>
+      );
+    }
+    const bMatch = part.match(/^<b>(.*?)<\/b>$/);
+    if (bMatch) {
+      return (
+        <strong key={i} className="text-foreground font-semibold">
+          {bMatch[1]}
+        </strong>
+      );
+    }
+    return part;
+  });
 }
 
 export default function Experience() {
@@ -163,7 +173,7 @@ export default function Experience() {
                         className="text-foreground/80 text-sm leading-relaxed flex gap-2"
                       >
                         <span className="text-primary mt-0.5 shrink-0">&#9657;</span>
-                        <span>{highlightMetrics(highlight)}</span>
+                        <span>{parseHighlights(highlight)}</span>
                       </motion.li>
                     ))}
                   </ul>

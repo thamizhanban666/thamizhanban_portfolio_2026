@@ -68,7 +68,7 @@ export default function Skills() {
                     >
                       <Badge
                         variant="outline"
-                        className="bg-primary/5 border-primary/25 text-primary/90 hover:bg-primary/10 hover:border-primary/40 transition-colors"
+                        className="bg-primary/[0.03] border-primary/15 text-primary hover:bg-primary/[0.06] hover:border-primary/25 transition-colors"
                       >
                         {skill}
                       </Badge>

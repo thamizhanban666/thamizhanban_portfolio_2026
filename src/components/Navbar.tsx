@@ -82,9 +82,14 @@ export default function Navbar() {
           {/* Logo */}
           <a
             href="#"
-            className="text-xl font-bold gradient-text"
+            className="group flex items-center gap-2 text-xl font-bold gradient-text"
             onClick={handleLogoClick}
           >
+            <img
+              src="/images/logo.png"
+              alt="Thamizhanban Logo"
+              className="h-8 w-8 object-contain transition-transform duration-500 ease-in-out group-hover:rotate-[360deg]"
+            />
             Thamizhanban
           </a>
 
