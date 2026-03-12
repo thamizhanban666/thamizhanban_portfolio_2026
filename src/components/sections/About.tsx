@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { aboutData } from "@/lib/data";
 import TextReveal from "@/components/animations/TextReveal";
-import AnimatedCounter from "@/components/animations/AnimatedCounter";
+import { ChevronRight } from "lucide-react";
 import {
   fadeInUp,
   staggerContainer,
@@ -15,7 +15,7 @@ export default function About() {
     <section id="about" className="py-20 md:py-32">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         {/* Section Header with TextReveal */}
-        <div className="mb-16">
+        <div className="mb-12">
           <TextReveal
             text="About Me"
             as="h2"
@@ -34,9 +34,9 @@ export default function About() {
           />
         </div>
 
-        {/* Profile intro — image placeholder + first paragraph side by side */}
+        {/* Profile intro — image + first paragraph side by side */}
         <motion.div
-          className="flex flex-col sm:flex-row items-start gap-8 mb-8"
+          className="flex flex-col sm:flex-row items-center gap-6 sm:gap-10 mb-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -47,11 +47,11 @@ export default function About() {
         >
           {/* Profile image */}
           <motion.div
-            className="shrink-0 mx-auto sm:mx-0"
+            className="shrink-0"
             whileHover={{ scale: 1.05, rotate: 3 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
-            <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full border-2 border-primary/40 p-1 hover:border-primary/70 transition-colors">
+            <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full border-2 border-primary/40 p-1 hover:border-primary/70 transition-colors">
               <img
                 src="/images/profilePicture1.png"
                 alt="Thamizhanban"
@@ -60,7 +60,7 @@ export default function About() {
             </div>
           </motion.div>
           {/* First paragraph */}
-          <p className="text-muted-foreground leading-relaxed text-lg">
+          <p className="text-muted-foreground leading-relaxed text-lg sm:text-left">
             {aboutData.paragraphs[0]}
           </p>
         </motion.div>
@@ -84,51 +84,25 @@ export default function About() {
           ))}
         </motion.div>
 
-        {/* Stats Row */}
-        <motion.div
-          className="glass grid grid-cols-2 md:grid-cols-4 p-8 md:p-10"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          whileHover={{ y: -4 }}
+        {/* Highlights */}
+        <motion.ul
+          className="flex flex-col gap-3"
+          variants={staggerContainer(0.1)}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
-          transition={{
-            duration: 0.6,
-            delay: 0.2,
-            ease: appleEase,
-          }}
         >
-          {aboutData.stats.map((stat, index) => {
-            const Icon = stat.icon;
-            return (
-              <motion.div
-                key={index}
-                className={`text-center md:text-left py-4 md:py-0 md:pr-8 ${
-                  index > 0 ? "md:border-l md:border-border md:pl-8" : ""
-                } ${index >= 2 ? "border-t border-border md:border-t-0 pt-4 md:pt-0" : ""}`}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.5,
-                  delay: 0.1 + index * 0.1,
-                  ease: appleEase,
-                }}
-              >
-                <AnimatedCounter
-                  value={stat.value}
-                  className="text-4xl sm:text-5xl font-bold text-primary"
-                  duration={2000}
-                />
-                <div className="flex items-center gap-1.5 mt-2">
-                  <Icon size={14} className="text-muted-foreground/70" />
-                  <p className="text-sm text-muted-foreground tracking-wide">
-                    {stat.label}
-                  </p>
-                </div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+          {aboutData.highlights.map((point, index) => (
+            <motion.li
+              key={index}
+              variants={fadeInUp}
+              className="flex items-center gap-3 text-muted-foreground"
+            >
+              <ChevronRight size={16} className="text-primary shrink-0" />
+              <span className="text-sm sm:text-base">{point}</span>
+            </motion.li>
+          ))}
+        </motion.ul>
       </div>
     </section>
   );

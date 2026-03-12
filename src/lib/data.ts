@@ -1,11 +1,6 @@
 import {
-  Briefcase,
-  Code,
-  Layers,
-  Package,
   Monitor,
   Server,
-  Brain,
   Wrench,
 } from "lucide-react";
 
@@ -18,7 +13,7 @@ export const personalInfo = {
   linkedin: "https://www.linkedin.com/in/thamizhanban666/",
   github: "https://github.com/thamizhanban666",
   telegram: "https://t.me/T_h_a_m_i_z_h_a_n_b_a_n",
-  resume: "https://drive.google.com/file/d/1lZm5xALWidvmzipVMbHxT25o0Gq-lFt7/view?usp=sharing",
+  resume: "https://drive.google.com/file/d/1JPCq63pQFRT21Hbb3EF05VxcvGrUXeaK/view?usp=sharing",
 };
 
 // ─── Navigation ───
@@ -44,49 +39,68 @@ export const heroData = {
     "I don't just build features — I build entire products. I design in code, obsess over details, and ship interfaces that feel as good as they work.",
 };
 
+// ─── Helpers ───
+function getYearsOfExperience(): string {
+  const start = new Date("2022-12-01"); // First professional role (Moii AI)
+  const now = new Date();
+  const years = Math.floor(
+    (now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24 * 365.25)
+  );
+  return `${years}+`;
+}
+
 // ─── About ───
 export const aboutData = {
   paragraphs: [
-    "I'm a frontend developer at Swipe Pages with 3+ years of experience building production SaaS products from the ground up. As the sole developer, I built entire product frontends from scratch across SwipeOne and Swipe Agents — both serving real paying customers launched on AppSumo.",
-    "I'm a designer-developer hybrid who codes designs directly without Figma. I study best-in-class SaaS products for inspiration, then design and build directly in code. Every UI I ship is intentionally crafted for clarity, usability, and visual polish — with a keen eye on both design and code architecture.",
-    "I took an unconventional path from Commerce (B.Com + CA-CPT) to software development through self-driven learning. That journey shaped me into a self-starter who thrives on ownership and learning fast.",
+    "I build entire product frontends from scratch — from the first route to hundreds of components serving real users. I thrive on ownership, taking on the most technically complex challenges and shipping them solo.",
+    "I'm a designer-developer hybrid. I design directly in code without Figma, studying best-in-class products for inspiration. Every interface I ship is intentionally crafted — clean architecture under the hood, pixel-perfect polish on the surface.",
+    "I took an unconventional path from Commerce to software development through self-driven learning. That journey shaped how I work — I learn fast, figure things out independently, and take full ownership of what I build.",
   ],
-  stats: [
-    { value: "3+", label: "Years Experience", icon: Briefcase },
-    { value: "500+", label: "Files Shipped", icon: Code },
-    { value: "90+", label: "Page Routes Built", icon: Layers },
-    { value: "3", label: "Products Built", icon: Package },
+  highlights: [
+    "Builds complete product frontends, from first route to production",
+    "Designs directly in code, pixel-perfect with or without Figma",
+    "Clean, maintainable architecture that scales",
+    "Fast learner who figures things out independently",
   ],
 };
 
 // ─── Experience ───
 export const experienceData = [
   {
-    company: "Swipe Pages",
-    role: "Full Stack Developer (MERN)",
+    company: "Swipe Pages (Brand Exponents Creatives Pvt Ltd)",
+    role: "Full Stack Developer",
     products: "SwipeOne / Swipe Agents / Swipe Pages",
     period: "April 2023 — March 2026",
     startDate: "2023-04-01",
     duration: "3 years",
     isCurrent: false,
     highlights: [
-      "Built SwipeOne's <hl>entire frontend from scratch</hl> — Next.js 14, <b>90+ routes</b>, <b>140+ components</b>, <b>500+ TypeScript files</b>",
-      "Designed and developed a <hl>Notion-like email builder</hl> with <b>50+ custom TipTap extensions</b> and cross-client HTML rendering",
-      "Built Swipe Agents frontend (Next.js 16, React 19) — <hl>autonomous AI agent platform</hl> with <b>40+ tool UI components</b> and SSE streaming",
-      "Architected shared Git submodule system, <b>30+ custom React hooks</b>, and <b>45+ shared UI components</b>",
-      "<hl>Self-designed UIs without a dedicated designer</hl> by referencing Notion, Potion, Mailmodo, and Encharge",
+      "Built <hl>SwipeOne's entire frontend from scratch</hl> as the sole developer — <b>90+ routes</b>, <b>140+ components</b>, <b>500+ TypeScript files</b>, serving real paying customers via AppSumo",
+      "Designed and developed a <hl>Notion-like email builder</hl> with <b>50+ custom TipTap extensions</b> and a recursive JSON-to-HTML converter for cross-email-client rendering",
+      "Shipped the <hl>Pipelines & Deals Kanban board in 1 week</hl> to meet a product launch deadline — dual-state sync architecture bridging <b>@dnd-kit with TanStack Query</b> for optimistic drag updates",
+      "Core contributor to the <hl>Workflow Automation builder</hl> — visual drag-and-drop interface using <b>xyflow</b> and <b>Dagre</b>, with <b>50+ industry-specific templates</b>",
+      "Built the <hl>Swipe Agents frontend and partial backend</hl> — autonomous AI agent platform with real-time SSE streaming, <b>40+ tool UI components</b>, and resumable conversations",
+      "Built the <hl>Funnel Analytics feature</hl> for Swipe Pages and resolved bugs across the landing page builder platform",
+      "Implemented <hl>optimistic update architecture</hl> across SwipeOne and Swipe Agents using <b>TanStack Query</b> — instant UI feedback on every mutation with server state reconciliation",
+      "Architected shared Git submodule system, <b>30+ custom React hooks</b>, and <b>45+ shared UI components</b> used across multiple products",
+      "Self-designed most UIs <hl>directly in code without a dedicated designer</hl> — pixel-perfect, production-ready interfaces",
     ],
     techTags: [
-      "Next.js 14/16",
-      "React 18/19",
+      "Next.js",
+      "React",
       "TypeScript",
       "TanStack Query",
       "TipTap",
       "Tailwind CSS",
       "Radix UI",
       "Vercel AI SDK",
-      "React Flow",
+      "xyflow",
+      "@dnd-kit",
       "Framer Motion",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Redis",
     ],
   },
   {
@@ -98,10 +112,11 @@ export const experienceData = [
     duration: "4 months",
     isCurrent: false,
     highlights: [
-      "Built UI for a <hl>vision AI analytics platform</hl> that transforms CCTV systems into intelligent analytics",
-      "Worked with React and Ant Design in a startup <b>backed by Google Cloud</b>",
+      "Built <hl>dashboards and analytical charts</hl> for a vision AI platform that transforms CCTV systems into intelligent analytics",
+      "Developed data visualization interfaces using <b>Recharts</b> for real-time analytics display",
+      "Worked with <b>React</b>, <b>TypeScript</b>, and <b>Ant Design</b> in a startup backed by Google Cloud",
     ],
-    techTags: ["React", "Ant Design", "JavaScript"],
+    techTags: ["React", "TypeScript", "Ant Design", "Recharts"],
   },
 ];
 
@@ -135,9 +150,9 @@ export const featuredWorkData: FeaturedProject[] = [
   {
     title: "SwipeOne",
     subtitle: "AI-Powered CRM & Marketing Automation",
-    role: "Sole Frontend Developer",
+    role: "Core Frontend Architect",
     description:
-      "Built the entire frontend architecture from zero for a complete SaaS platform with multiple major modules — CRM, email marketing, workflow automation, and AI agents. Serving real paying customers launched on AppSumo.",
+      "A full-featured SaaS platform combining CRM, email marketing, pipeline management, workflow automation, and AI agents — competing with tools like HubSpot and ActiveCampaign. Built the entire frontend from zero as the core architect with optimistic update architecture using TanStack Query. Launched on AppSumo and serving real paying customers.",
     image: null,
     video: {
       light: "/videos/work/swipeone_light.mp4",
@@ -151,16 +166,19 @@ export const featuredWorkData: FeaturedProject[] = [
       { value: "30+", label: "Custom Hooks" },
     ],
     techTags: [
-      "Next.js 14",
-      "React 18",
+      "Next.js",
+      "React",
       "TypeScript",
-      "TanStack Query v5",
+      "TanStack Query",
       "Radix UI",
       "Tailwind CSS",
-      "TipTap 2.4",
-      "React Flow",
+      "TipTap",
+      "ProseMirror",
+      "xyflow",
       "@dnd-kit",
       "Zod",
+      "CodeMirror",
+      "Recharts",
     ],
     url: "https://app.swipeone.com/",
     modules: [
@@ -169,7 +187,7 @@ export const featuredWorkData: FeaturedProject[] = [
         subtitle: "Notion-like Rich Text Email Editor",
         role: "Sole Developer & Designer",
         description:
-          "Designed and built from scratch inside SwipeOne. Features a slash command menu, multi-column layouts, liquid tag personalization, and a recursive JSON-to-HTML converter for cross-email-client rendering.",
+          "Designed and built from scratch inside SwipeOne. Features a slash command menu, multi-column layouts, liquid tag personalization, and a recursive JSON-to-HTML converter for cross-email-client rendering. Self-designed UI — no designer involved.",
         video: {
           light: "/videos/work/emailBuilder_light.mp4",
           dark: "/videos/work/emailBuilder_dark.mp4",
@@ -178,11 +196,9 @@ export const featuredWorkData: FeaturedProject[] = [
         metrics: [
           { value: "50+", label: "TipTap Extensions" },
           { value: "1200+", label: "Line Core Component" },
-          { value: "✓", label: "Cross-Client Rendering" },
-          { value: "✓", label: "Self-Designed UI" },
         ],
         techTags: [
-          "TipTap 2.4",
+          "TipTap",
           "ProseMirror",
           "React Email",
           "CodeMirror",
@@ -195,7 +211,7 @@ export const featuredWorkData: FeaturedProject[] = [
         subtitle: "Kanban-style Deal Management Board",
         role: "Sole Developer",
         description:
-          "Built a drag-and-drop Kanban pipeline board for managing deals across stages. Features a dual-state sync architecture bridging @dnd-kit with React Query — optimistic drag updates with server state reconciliation.",
+          "Built a drag-and-drop Kanban pipeline board for managing deals across stages. Features a dual-state sync architecture bridging @dnd-kit with TanStack Query — optimistic drag updates with server state reconciliation.",
         video: {
           light: "/videos/work/pipelines_light.mp4",
           dark: "/videos/work/pipelines_dark.mp4",
@@ -205,12 +221,11 @@ export const featuredWorkData: FeaturedProject[] = [
           { value: "✓", label: "Drag & Drop Kanban" },
           { value: "✓", label: "Optimistic Updates" },
           { value: "✓", label: "DnD + Query Sync" },
-          { value: "1 week", label: "Built In" },
         ],
         techTags: [
           "@dnd-kit",
-          "TanStack Query v5",
-          "React 18",
+          "TanStack Query",
+          "React",
           "TypeScript",
           "Lodash",
         ],
@@ -220,7 +235,7 @@ export const featuredWorkData: FeaturedProject[] = [
         subtitle: "Visual Workflow Builder",
         role: "Core Frontend Developer",
         description:
-          "Visual drag-and-drop workflow builder with auto-layout using Dagre, a template library with industry-specific workflow templates, and workflow status tracking with draft/active/inactive states.",
+          "Built the frontend for a visual workflow builder that lets users automate marketing sequences with a drag-and-drop canvas. Supports auto-layout, 50+ ready-made templates for different industries, and lifecycle management with draft, active, and inactive states.",
         video: {
           light: "/videos/work/workflow_light.mp4",
           dark: "/videos/work/workflow_dark.mp4",
@@ -233,9 +248,9 @@ export const featuredWorkData: FeaturedProject[] = [
           { value: "✓", label: "Status Tracking" },
         ],
         techTags: [
-          "@xyflow/react",
+          "xyflow",
           "Dagre",
-          "React 18",
+          "React",
           "TypeScript",
           "Tailwind CSS",
         ],
@@ -247,7 +262,7 @@ export const featuredWorkData: FeaturedProject[] = [
     subtitle: "Autonomous AI Agent Platform",
     role: "Sole Frontend Developer + Partial Backend",
     description:
-      "Built the complete frontend and partial backend for an autonomous AI agent platform using cutting-edge Vercel AI SDK v6 ToolLoopAgent architecture. Features real-time SSE streaming, 3 execution modes, and resumable conversations.",
+      "Built the complete frontend and partial backend for an autonomous AI agent platform. Agents execute multi-step tasks using 22+ tools with real-time SSE streaming, 3 execution modes, and resumable conversations.",
     image: null,
     video: {
       light: "/videos/work/swipeagents_light.mp4",
@@ -261,11 +276,11 @@ export const featuredWorkData: FeaturedProject[] = [
       { value: "3", label: "Execution Modes" },
     ],
     techTags: [
-      "Next.js 16",
-      "React 19",
+      "Next.js",
+      "React",
       "TypeScript",
-      "Vercel AI SDK v6",
-      "Tailwind CSS 4",
+      "Vercel AI SDK",
+      "Tailwind CSS",
       "SSE Streaming",
       "Redis",
       "MongoDB",
@@ -280,18 +295,23 @@ export const skillsData = [
     category: "Frontend",
     icon: Monitor,
     skills: [
-      "React 18/19",
-      "Next.js 14/16",
+      "React",
+      "Next.js",
       "TypeScript",
       "Tailwind CSS",
+      "Sass",
       "TipTap / ProseMirror",
       "TanStack Query",
       "Radix UI",
+      "shadcn/ui",
       "Framer Motion",
-      "React Flow",
+      "xyflow",
       "@dnd-kit",
       "Vercel AI SDK",
       "React Email",
+      "Recharts",
+      "Zod",
+      "Tippy.js",
     ],
   },
   {
@@ -299,25 +319,13 @@ export const skillsData = [
     icon: Server,
     skills: [
       "Node.js",
-      "Express.js 5",
+      "Express.js",
       "MongoDB",
       "Redis",
       "REST APIs",
       "SSE Streaming",
       "JWT Auth",
       "AWS S3",
-    ],
-  },
-  {
-    category: "AI & Integration",
-    icon: Brain,
-    skills: [
-      "Vercel AI SDK v6",
-      "Google GenAI / Gemini",
-      "ToolLoopAgent Pattern",
-      "AI Streaming (useChat)",
-      "Context Compaction",
-      "Resumable Streams",
     ],
   },
   {
@@ -331,7 +339,6 @@ export const skillsData = [
       "Cursor",
       "Claude Code",
       "Mixpanel",
-      "npm",
     ],
   },
 ];
@@ -366,7 +373,7 @@ export const testimonialsData = [
 
 // ─── Contact ───
 export const contactData = {
-  heading: "Let's Work Together",
-  subtext: "Available for full-time frontend-focused roles",
-  cta: "I'm currently looking for new opportunities where I can contribute as a frontend-focused full stack developer. If you're looking for someone who builds entire product frontends from scratch, let's connect.",
+  heading: "Let's Build Something Together",
+  subtext: "Got a product that needs a frontend? Let's talk.",
+  cta: "I'm a frontend-focused full stack developer who builds entire product frontends from scratch — clean architecture, pixel-perfect UI, full ownership. If that sounds like what you need, I'd love to hear from you.",
 };

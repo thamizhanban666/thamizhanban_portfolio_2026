@@ -62,7 +62,7 @@ export default function Experience() {
     <section id="experience" className="py-20 md:py-32">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         {/* Section Header with TextReveal */}
-        <div className="mb-16">
+        <div className="mb-12">
           <TextReveal
             text="Experience"
             as="h2"
@@ -92,7 +92,7 @@ export default function Experience() {
             style={{ scaleY: lineScaleY }}
           />
 
-          <div className="space-y-10">
+          <div className="space-y-8">
             {experienceData.map((exp, index) => (
               <motion.div
                 key={index}
@@ -102,7 +102,7 @@ export default function Experience() {
                 {/* Timeline Dot — spring in */}
                 <motion.div
                   className={cn(
-                    "w-4 h-4 rounded-full bg-primary border-4 border-background absolute left-0 top-8 z-10",
+                    "w-4 h-4 rounded-full bg-primary border-4 border-background absolute left-0 top-6 sm:top-8 z-10",
                     exp.isCurrent &&
                       "shadow-[0_0_12px_4px_rgba(249,115,22,0.4)]"
                   )}
@@ -115,7 +115,7 @@ export default function Experience() {
                 {/* Pulsing glow ring for current position */}
                 {exp.isCurrent && (
                   <motion.div
-                    className="absolute left-0 top-8 w-4 h-4 rounded-full bg-primary/30 z-10"
+                    className="absolute left-0 top-6 sm:top-8 w-4 h-4 rounded-full bg-primary/30 z-10"
                     animate={{ scale: [1, 2, 1], opacity: [0.6, 0, 0.6] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   />
@@ -123,7 +123,7 @@ export default function Experience() {
 
                 {/* Content — glass card with hover lift */}
                 <motion.div
-                  className="glass p-6 sm:p-8 space-y-4"
+                  className="glass p-4 sm:p-6 space-y-4"
                   whileHover={{ y: -4 }}
                   transition={{ type: "spring", stiffness: 300, damping: 25 }}
                 >
@@ -145,9 +145,11 @@ export default function Experience() {
                   </div>
 
                   {/* Products */}
-                  <p className="text-sm text-muted-foreground">
-                    {exp.products}
-                  </p>
+                  {exp.products && (
+                    <p className="text-sm text-muted-foreground">
+                      {exp.products}
+                    </p>
+                  )}
 
                   {/* Period & Duration */}
                   <p className="text-sm text-muted-foreground">

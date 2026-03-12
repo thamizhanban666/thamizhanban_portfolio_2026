@@ -15,7 +15,7 @@ export default function Skills() {
     <section id="skills" className="py-20 md:py-32">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
-        <div className="mb-16">
+        <div className="mb-12">
           <TextReveal
             text="Skills"
             as="h2"
@@ -46,7 +46,7 @@ export default function Skills() {
                 variants={fadeInUp}
                 whileHover={{ y: -6, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                className="glass p-6 sm:p-8 space-y-5 glow-effect"
+                className="glass p-4 sm:p-6 space-y-5 glow-effect"
               >
                 {/* Category header */}
                 <div className="flex items-center gap-3">
@@ -58,11 +58,34 @@ export default function Skills() {
                   </h3>
                 </div>
 
-                {/* Skill pills */}
-                <div className="flex flex-wrap gap-2">
+                {/* Skill pills — staggered entrance */}
+                <motion.div
+                  className="flex flex-wrap gap-2"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={{
+                    hidden: {},
+                    visible: {
+                      transition: {
+                        staggerChildren: 0.04,
+                        delayChildren: 0.2 + index * 0.1,
+                      },
+                    },
+                  }}
+                >
                   {category.skills.map((skill, sIndex) => (
                     <motion.div
                       key={sIndex}
+                      variants={{
+                        hidden: { opacity: 0, scale: 0.8, y: 10 },
+                        visible: {
+                          opacity: 1,
+                          scale: 1,
+                          y: 0,
+                          transition: { duration: 0.3, ease: appleEase },
+                        },
+                      }}
                       whileHover={{ scale: 1.05, y: -1 }}
                       transition={{ type: "spring", stiffness: 400, damping: 25 }}
                     >
@@ -74,7 +97,7 @@ export default function Skills() {
                       </Badge>
                     </motion.div>
                   ))}
-                </div>
+                </motion.div>
               </motion.div>
             );
           })}

@@ -253,13 +253,15 @@ function ModuleContent({ mod }: { mod: FeaturedModule }) {
         {mod.role}
       </Badge>
 
-      {/* Module video */}
+      {/* Module video — smaller than parent for hierarchy */}
       {mod.video && (
-        <BrowserMockup
-          video={mod.video}
-          title={mod.title}
-          gradient={mod.gradient}
-        />
+        <div className="max-w-2xl">
+          <BrowserMockup
+            video={mod.video}
+            title={mod.title}
+            gradient={mod.gradient}
+          />
+        </div>
       )}
 
       {/* Module description */}
@@ -301,13 +303,16 @@ function ModuleContent({ mod }: { mod: FeaturedModule }) {
 
 /* ── Module Tabs (within SwipeOne) ── */
 function ModuleTabs({ modules }: { modules: FeaturedModule[] }) {
+  const [activeTab, setActiveTab] = useState(modules[0].title);
+  const activeMod = modules.find((m) => m.title === activeTab) ?? modules[0];
+
   return (
     <div className="mt-10 space-y-6">
       <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground/60">
         Key Modules I Built
       </p>
 
-      <Tabs defaultValue={modules[0].title} className="gap-6">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="gap-6">
         {/* Horizontal scrollable line tabs — vibrant brand color */}
         <div className="overflow-x-auto -mx-4 px-4 sm:-mx-6 sm:px-6 scrollbar-hide">
           <TabsList variant="line" className="w-max gap-6">
@@ -323,11 +328,19 @@ function ModuleTabs({ modules }: { modules: FeaturedModule[] }) {
           </TabsList>
         </div>
 
-        {modules.map((mod) => (
-          <TabsContent key={mod.title} value={mod.title}>
-            <ModuleContent mod={mod} />
-          </TabsContent>
-        ))}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.3, ease: appleEase }}
+          >
+            <TabsContent value={activeTab} forceMount>
+              <ModuleContent mod={activeMod} />
+            </TabsContent>
+          </motion.div>
+        </AnimatePresence>
       </Tabs>
     </div>
   );
@@ -339,7 +352,7 @@ export default function FeaturedWork() {
     <section id="work" className="py-20 md:py-32">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
-        <div className="mb-16">
+        <div className="mb-12">
           <TextReveal
             text="Featured Work"
             as="h2"
@@ -355,7 +368,7 @@ export default function FeaturedWork() {
         </div>
 
         {/* Project Cards */}
-        <div className="space-y-24">
+        <div className="space-y-16">
           {featuredWorkData.map((project, index) => (
             <motion.article
               key={index}
@@ -366,48 +379,48 @@ export default function FeaturedWork() {
                 duration: 0.7,
                 ease: appleEase,
               }}
-              className="space-y-8"
+              className="glass p-4 sm:p-6 space-y-5"
             >
-              {/* Title row */}
-              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-                <div>
+              {/* Header: Title + Role badge + View Project */}
+              <div className="space-y-3">
+                <div className="flex items-start justify-between gap-4">
                   <h3 className="text-2xl sm:text-3xl font-bold gradient-text">
                     {project.title}
                   </h3>
-                  <p className="text-muted-foreground mt-1">
-                    {project.subtitle}
-                  </p>
-                  <Badge
-                    variant="outline"
-                    className="mt-2 w-fit text-xs bg-primary/[0.03] border-primary/15 text-primary"
-                  >
-                    {project.role}
-                  </Badge>
-                </div>
-                {project.url && (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    asChild
-                    className="shrink-0 self-start gap-1.5 text-primary border-primary/30 hover:bg-primary/10 hover:text-primary"
-                  >
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                  {project.url && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      asChild
+                      className="shrink-0 gap-1.5 text-primary border-primary/30 hover:bg-primary/10 hover:text-primary"
                     >
-                      View Project
-                      <ArrowUpRight className="h-3.5 w-3.5" />
-                    </a>
-                  </Button>
-                )}
+                      <a
+                        href={project.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        View Project
+                        <ArrowUpRight className="h-3.5 w-3.5" />
+                      </a>
+                    </Button>
+                  )}
+                </div>
+                <p className="text-muted-foreground">
+                  {project.subtitle}
+                </p>
+                <Badge
+                  variant="outline"
+                  className="w-fit text-xs bg-primary/[0.03] border-primary/15 text-primary"
+                >
+                  {project.role}
+                </Badge>
               </div>
 
-              {/* Browser Mockup with hover glow */}
+              {/* Browser Mockup */}
               <motion.div
-                whileHover={{ y: -4, scale: 1.01 }}
+                whileHover={{ y: -4, scale: 1.005 }}
                 transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                className="glow-effect rounded-xl"
+                className="rounded-xl"
               >
                 <BrowserMockup
                   image={project.image}
@@ -418,56 +431,48 @@ export default function FeaturedWork() {
                 />
               </motion.div>
 
-              {/* Project Details */}
-              <div className="space-y-6">
-                {/* Description */}
-                <p className="text-muted-foreground leading-relaxed max-w-3xl">
-                  {project.description}
-                </p>
+              {/* Description */}
+              <p className="text-muted-foreground leading-relaxed text-sm max-w-3xl">
+                {project.description}
+              </p>
 
-                {/* Metrics */}
-                <div className="flex flex-wrap gap-x-10 gap-y-4">
-                  {project.metrics.map((metric, mIndex) => (
-                    <div key={mIndex}>
-                      <AnimatedCounter
-                        value={metric.value}
-                        className="text-2xl font-bold text-primary"
-                        duration={1500}
-                      />
-                      <p className="text-xs text-muted-foreground mt-0.5">
-                        {metric.label}
-                      </p>
-                    </div>
-                  ))}
-                </div>
+              {/* Metrics */}
+              <div className="flex flex-wrap gap-x-10 gap-y-4">
+                {project.metrics.map((metric, mIndex) => (
+                  <div key={mIndex}>
+                    <AnimatedCounter
+                      value={metric.value}
+                      className="text-2xl font-bold text-primary"
+                      duration={1500}
+                    />
+                    <p className="text-xs text-muted-foreground mt-0.5">
+                      {metric.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
 
-                {/* Tech Tags */}
-                <div className="flex flex-wrap gap-2">
-                  {project.techTags.map((tag, tIndex) => (
-                    <motion.div
-                      key={tIndex}
-                      whileHover={{ scale: 1.05, y: -1 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+              {/* Tech Tags */}
+              <div className="flex flex-wrap gap-2">
+                {project.techTags.map((tag, tIndex) => (
+                  <motion.div
+                    key={tIndex}
+                    whileHover={{ scale: 1.05, y: -1 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  >
+                    <Badge
+                      variant="outline"
+                      className="bg-primary/[0.03] border-primary/15 text-primary hover:bg-primary/[0.06] hover:border-primary/25 transition-colors text-xs"
                     >
-                      <Badge
-                        variant="outline"
-                        className="bg-primary/[0.03] border-primary/15 text-primary hover:bg-primary/[0.06] hover:border-primary/25 transition-colors text-xs"
-                      >
-                        {tag}
-                      </Badge>
-                    </motion.div>
-                  ))}
-                </div>
+                      {tag}
+                    </Badge>
+                  </motion.div>
+                ))}
               </div>
 
               {/* Sub-modules (tabs) — only for projects with modules */}
               {project.modules && project.modules.length > 0 && (
                 <ModuleTabs modules={project.modules} />
-              )}
-
-              {/* Separator between projects */}
-              {index < featuredWorkData.length - 1 && (
-                <div className="h-px bg-border/30 mt-12" />
               )}
             </motion.article>
           ))}

@@ -1,18 +1,85 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef, useCallback } from "react";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  type MotionValue,
+} from "framer-motion";
 import { Mail, Github, Send, ArrowRight } from "lucide-react";
-import { personalInfo } from "@/lib/data";
+import { personalInfo, contactData } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import MagneticButton from "@/components/animations/MagneticButton";
 import { appleEase } from "@/lib/animation-variants";
+
+/** Tilt-on-hover wrapper for social icons */
+function TiltIcon({
+  href,
+  label,
+  children,
+}: {
+  href: string;
+  label: string;
+  children: React.ReactNode;
+}) {
+  const ref = useRef<HTMLAnchorElement>(null);
+  const maxTilt = 35;
+
+  const rotateXRaw = useMotionValue(0);
+  const rotateYRaw = useMotionValue(0);
+  const rotateX = useSpring(rotateXRaw, { stiffness: 260, damping: 18 });
+  const rotateY = useSpring(rotateYRaw, { stiffness: 260, damping: 18 });
+
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent) => {
+      if (!ref.current) return;
+      const rect = ref.current.getBoundingClientRect();
+      const nx = (e.clientX - rect.left) / rect.width - 0.5;
+      const ny = (e.clientY - rect.top) / rect.height - 0.5;
+      rotateXRaw.set(-ny * maxTilt);
+      rotateYRaw.set(nx * maxTilt);
+    },
+    [rotateXRaw, rotateYRaw]
+  );
+
+  const handleMouseLeave = useCallback(() => {
+    rotateXRaw.set(0);
+    rotateYRaw.set(0);
+  }, [rotateXRaw, rotateYRaw]);
+
+  return (
+    <div style={{ perspective: 200 }}>
+      <motion.a
+        ref={ref}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="w-11 h-11 rounded-full border border-border/60 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/5 transition-colors"
+        aria-label={label}
+        style={{
+          rotateX,
+          rotateY,
+          transformStyle: "preserve-3d",
+        }}
+        whileHover={{ scale: 1.15 }}
+        whileTap={{ scale: 0.95 }}
+        transition={{ type: "spring", stiffness: 400, damping: 20 }}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+      >
+        {children}
+      </motion.a>
+    </div>
+  );
+}
 
 export default function Contact() {
   return (
     <section id="contact" className="py-20 md:py-32">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
         <motion.div
-          className="glass p-10 sm:p-14 md:p-16"
+          className="glass p-6 sm:p-8 md:p-10"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           whileHover={{ y: -4 }}
@@ -30,8 +97,8 @@ export default function Contact() {
             }}
             className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight"
           >
-            {"Let's build something "}
-            <span className="gradient-text">together</span>
+            {contactData.heading.replace(" Together", " ")}
+            <span className="gradient-text">Together</span>
           </motion.h2>
 
           {/* Subtext */}
@@ -46,7 +113,7 @@ export default function Contact() {
             }}
             className="text-muted-foreground mt-6 text-lg max-w-xl mx-auto"
           >
-            {"I'm looking for new opportunities where I can contribute as a frontend-focused full stack developer. If you're looking for someone who builds entire product frontends from scratch, let's connect."}
+            {contactData.cta}
           </motion.p>
 
           {/* CTA Button */}
@@ -88,28 +155,10 @@ export default function Contact() {
             }}
             className="mt-10 flex items-center justify-center gap-3"
           >
-            <motion.a
-              href={personalInfo.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-11 h-11 rounded-full border border-border/60 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/5 transition-colors"
-              aria-label="GitHub"
-              whileHover={{ scale: 1.15, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 400, damping: 20 }}
-            >
+            <TiltIcon href={personalInfo.github} label="GitHub">
               <Github size={20} />
-            </motion.a>
-            <motion.a
-              href={personalInfo.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-11 h-11 rounded-full border border-border/60 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/5 transition-colors"
-              aria-label="LinkedIn"
-              whileHover={{ scale: 1.15, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 400, damping: 20 }}
-            >
+            </TiltIcon>
+            <TiltIcon href={personalInfo.linkedin} label="LinkedIn">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -125,19 +174,10 @@ export default function Contact() {
                 <rect width="4" height="12" x="2" y="9" />
                 <circle cx="4" cy="4" r="2" />
               </svg>
-            </motion.a>
-            <motion.a
-              href={personalInfo.telegram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-11 h-11 rounded-full border border-border/60 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/5 transition-colors"
-              aria-label="Telegram"
-              whileHover={{ scale: 1.15, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 400, damping: 20 }}
-            >
+            </TiltIcon>
+            <TiltIcon href={personalInfo.telegram} label="Telegram">
               <Send size={20} />
-            </motion.a>
+            </TiltIcon>
             <span className="text-border mx-1">|</span>
             <span className="text-sm text-muted-foreground">
               {personalInfo.location}

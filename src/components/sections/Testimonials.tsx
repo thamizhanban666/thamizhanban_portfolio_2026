@@ -279,7 +279,7 @@ export default function Testimonials() {
     <section id="testimonials" className="py-20 md:py-32">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
-        <div className="mb-16">
+        <div className="mb-12">
           <TextReveal
             text="Testimonials"
             as="h2"
@@ -300,7 +300,7 @@ export default function Testimonials() {
           whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6, ease: appleEase }}
-          className="glass p-8 sm:p-10 md:p-12"
+          className="glass p-6 sm:p-8 md:p-10"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => {
             if (!userInteracted) setIsPaused(false);
