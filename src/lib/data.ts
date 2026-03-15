@@ -13,7 +13,7 @@ export const personalInfo = {
   linkedin: "https://www.linkedin.com/in/thamizhanban666/",
   github: "https://github.com/thamizhanban666",
   telegram: "https://t.me/T_h_a_m_i_z_h_a_n_b_a_n",
-  resume: "https://drive.google.com/file/d/1JPCq63pQFRT21Hbb3EF05VxcvGrUXeaK/view?usp=sharing",
+  resume: "https://drive.google.com/file/d/1PpiONYwRrUhn21E1ydD7vDdRI_YCdBEe/view?usp=sharing",
 };
 
 // ─── Navigation ───
@@ -78,7 +78,7 @@ export const experienceData = [
       "Built <hl>SwipeOne's entire frontend from scratch</hl> as the sole developer — <b>90+ routes</b>, <b>140+ components</b>, <b>500+ TypeScript files</b>, serving real paying customers via AppSumo",
       "Designed and developed a <hl>Notion-like email builder</hl> with <b>50+ custom TipTap extensions</b> and a recursive JSON-to-HTML converter for cross-email-client rendering",
       "Shipped the <hl>Pipelines & Deals Kanban board in 1 week</hl> to meet a product launch deadline — dual-state sync architecture bridging <b>@dnd-kit with TanStack Query</b> for optimistic drag updates",
-      "Core contributor to the <hl>Workflow Automation builder</hl> — visual drag-and-drop interface using <b>xyflow</b> and <b>Dagre</b>, with <b>50+ industry-specific templates</b>",
+      "Core contributor to the <hl>Workflow Automation builder</hl> — visual drag-and-drop interface using <b>xyflow</b>, <b>Dagre</b>, and <b>Redux</b> for workflow state, with <b>50+ industry-specific templates</b>",
       "Built the <hl>Swipe Agents frontend and partial backend</hl> — autonomous AI agent platform with real-time SSE streaming, <b>40+ tool UI components</b>, and resumable conversations",
       "Built the <hl>Funnel Analytics feature</hl> for Swipe Pages and resolved bugs across the landing page builder platform",
       "Implemented <hl>optimistic update architecture</hl> across SwipeOne and Swipe Agents using <b>TanStack Query</b> — instant UI feedback on every mutation with server state reconciliation",
@@ -114,9 +114,9 @@ export const experienceData = [
     highlights: [
       "Built <hl>dashboards and analytical charts</hl> for a vision AI platform that transforms CCTV systems into intelligent analytics",
       "Developed data visualization interfaces using <b>Recharts</b> for real-time analytics display",
-      "Worked with <b>React</b>, <b>TypeScript</b>, and <b>Ant Design</b> in a startup backed by Google Cloud",
+      "Worked with <b>React</b>, <b>Redux</b>, <b>TypeScript</b>, and <b>Ant Design</b> in a startup backed by Google Cloud",
     ],
-    techTags: ["React", "TypeScript", "Ant Design", "Recharts"],
+    techTags: ["React", "Redux", "TypeScript", "Ant Design", "Recharts"],
   },
 ];
 
@@ -250,6 +250,7 @@ export const featuredWorkData: FeaturedProject[] = [
         techTags: [
           "xyflow",
           "Dagre",
+          "Redux",
           "React",
           "TypeScript",
           "Tailwind CSS",
@@ -309,6 +310,7 @@ export const skillsData = [
       "@dnd-kit",
       "Vercel AI SDK",
       "React Email",
+      "Redux",
       "Recharts",
       "Zod",
       "Tippy.js",
